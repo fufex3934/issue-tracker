@@ -2,7 +2,7 @@
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 
-import { Button, Callout, TextField, Text } from "@radix-ui/themes";
+import { Button, Callout, TextField, Text, Spinner } from "@radix-ui/themes";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -23,6 +23,7 @@ const NewIssuePage = () => {
   });
   const router = useRouter();
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <div className="max-w-xl">
       {error && (
@@ -34,9 +35,11 @@ const NewIssuePage = () => {
         className=" space-y-3"
         onSubmit={handleSubmit(async (data) => {
           try {
+            setIsLoading(true);
             await axios.post("/api/issues", data);
             router.push("/issues");
           } catch (error) {
+            setIsLoading(false);
             setError("An unexpected error occured");
           }
         })}
@@ -54,7 +57,7 @@ const NewIssuePage = () => {
         />
         <ErrorMessage >{errors.description?.message}</ErrorMessage>
 
-        <Button>Submit New Issue</Button>
+        <Button disabled={isLoading}>Submit New Issue{isLoading &&<Spinner/>}</Button>
       </form>
     </div>
   );
