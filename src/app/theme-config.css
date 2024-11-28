@@ -1,0 +1,17 @@
+.radix-themes {
+	--default-font-family: var(--font-inter);
+}
+.radix-themes {
+	--font-weight-light: 200;
+	--font-weight-regular: 300;
+	--font-weight-medium: 600;
+	--font-weight-bold: 800;
+}
+.radix-themes {
+	--heading-font-family: "Untitled Sans", sans-serif;
+	--heading-font-size-adjust: 1.05;
+	--heading-font-style: normal;
+	--heading-leading-trim-start: 0.42em;
+	--heading-leading-trim-end: 0.38em;
+	--heading-letter-spacing: -0.01em;
+}
